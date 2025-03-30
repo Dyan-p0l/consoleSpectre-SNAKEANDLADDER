@@ -17,7 +17,7 @@ internal class SnakeLadderGame
     };
 
     private static readonly HashSet<int> skillTiles = new() { 10, 20, 30, 40, 50, 60, 70, 85, 90 };
-    private static readonly string[] availableSkills = { "Shield", "Stun", "Swap", "Dice Manipulation", "Anchor", "Sabotage" };
+    private static readonly string[] availableSkills = { "Shield 🛡️", "Stun ⚡", "Swap 🔄", "Dice Manipulation 🎲", "Anchor ⚓", "Sabotage 💣" };
 
     private static int? lastRoll = null;
     private static string lastAction = "";
@@ -103,7 +103,7 @@ internal class SnakeLadderGame
 
                 if (currentPlayer.SkipTurn)
                 {
-                    lastAction = $"[red]{currentPlayer.Name} is stunned and skips this turn![/]";
+                    lastAction = $"[red]{currentPlayer.Name} is stunned ⚡ and skips this turn![/]";
                     currentPlayer.SkipTurn = false;
                     DisplayBoard();
                     Console.ReadKey();
@@ -127,7 +127,7 @@ internal class SnakeLadderGame
                     {
                         currentPlayer.HasWon = true;
                         DisplayBoard();
-                        AnsiConsole.MarkupLine($"\n[bold green]🎉 Congratulations {currentPlayer.Name}! You win the game! 🎉[/]");
+                        AnsiConsole.MarkupLine($"\n[bold green]🎉 Congratulations {currentPlayer.Name}! You win the game! 🏆[/]");
 
                         if (players.Count(p => !p.HasWon) == 0 || AnsiConsole.Confirm("\nDo you want to play again?"))
                         {
@@ -155,7 +155,7 @@ internal class SnakeLadderGame
         table.HideHeaders();
 
         for (int col = 0; col < 10; col++)
-            table.AddColumn(new TableColumn((col + 1).ToString()).Centered());
+            table.AddColumn(new TableColumn((col + 1).ToString()).Centered();
 
         for (int row = 9; row >= 0; row--)
         {
@@ -166,16 +166,20 @@ internal class SnakeLadderGame
                 string cellContent = cellNumber.ToString("D2");
 
                 if (snakes.ContainsKey(cellNumber))
-                    cellContent = $"[red]S{cellContent}[/]";
+                    cellContent = $"[red]🐍 {cellNumber}[/]";
                 else if (ladders.ContainsKey(cellNumber))
-                    cellContent = $"[green]L{cellContent}[/]";
+                    cellContent = $"[green]🪜 {cellNumber}[/]";
                 else if (skillTiles.Contains(cellNumber))
-                    cellContent = $"[blue]*{cellContent}[/]";
+                    cellContent = $"[blue]✨ {cellNumber}[/]";
 
                 var occupyingPlayers = players.Where(p => p.Position == cellNumber && !p.HasWon).ToList();
                 if (occupyingPlayers.Count > 0)
                 {
-                    cellContent = string.Join("", occupyingPlayers.Select(p => $"[{p.Color}]{p.Name[0]}[/]"));
+                    cellContent = string.Join("", occupyingPlayers.Select(p => $"[{p.Color}]{(p.Position == 100 ? "🏁" : p.Name[0].ToString())}[/]"));
+                }
+                else if (cellNumber == 100)
+                {
+                    cellContent = "🏁";
                 }
 
                 rowCells.Add(cellContent);
@@ -185,15 +189,16 @@ internal class SnakeLadderGame
 
         var rightPanel = new Panel(
             new Rows(
-                new Text($"[bold]Current Turn:[/] [{players[currentPlayerIndex].Color}]{players[currentPlayerIndex].Name}[/]"),
+                new Text($"[bold]Current Turn:[/] [{players[currentPlayerIndex].Color}]▶ {players[currentPlayerIndex].Name}[/]"),
                 new Text(""),
-                lastRoll.HasValue ? new Text($"[bold]Last Roll:[/] {lastRoll}") : new Text("[bold]Last Roll:[/] -"),
+                lastRoll.HasValue ? new Text($"[bold]Last Roll:[/] 🎲 {lastRoll}") : new Text("[bold]Last Roll:[/] 🎲 -"),
                 new Text(""),
                 !string.IsNullOrEmpty(lastSkillUsed) ? new Text($"[bold]Last Skill Used:[/] {lastSkillUsed}") : new Text("[bold]Last Skill Used:[/] -"),
                 new Text(""),
                 !string.IsNullOrEmpty(lastAction) ? new Markup($"[bold]Last Action:[/] {lastAction}") : new Text("[bold]Last Action:[/] -")
             ))
-            .Border(BoxBorder.Rounded);
+            .Border(BoxBorder.Rounded)
+            .Header("[bold]Game Info[/]");
 
         var statusTable = new Table().Border(TableBorder.Simple);
         statusTable.AddColumns(
@@ -204,21 +209,21 @@ internal class SnakeLadderGame
 
         foreach (var player in players.OrderBy(p => p.HasWon))
         {
-            string status = player.HasWon ? "[green]WINNER![/]" :
-                          player.SkipTurn ? "[red]STUNNED[/]" : "[yellow]ACTIVE[/]";
+            string status = player.HasWon ? "[green]🏆 WINNER![/]" :
+                          player.SkipTurn ? "[red]⚡ STUNNED[/]" : "[yellow]✅ ACTIVE[/]";
 
             statusTable.AddRow(
                 $"[{player.Color}]{player.Name}[/]",
-                $"[bold]{player.Position}[/]",
+                $"[bold]{(player.Position == 100 ? "🏁" : player.Position.ToString())}[/]",
                 player.Skills.Count > 0 ? string.Join(", ", player.Skills) : "None",
                 status);
         }
 
         statusTable.AddEmptyRow();
         statusTable.AddRow("[bold cyan]Legend[/]", "", "", "");
-        statusTable.AddRow("[green]🟩 Ladder[/]", "", "", "");
-        statusTable.AddRow("[red]🟥 Snake[/]", "", "", "");
-        statusTable.AddRow("[blue]🟦 Skill Tile[/]", "", "", "");
+        statusTable.AddRow("[green]🪜 Ladder[/]", "", "", "");
+        statusTable.AddRow("[red]🐍 Snake[/]", "", "", "");
+        statusTable.AddRow("[blue]✨ Skill Tile[/]", "", "", "");
 
         var rightPanelContent = new Rows(rightPanel, statusTable);
 
@@ -232,10 +237,10 @@ internal class SnakeLadderGame
 
     private static int RollDice()
     {
-        AnsiConsole.MarkupLine("[yellow]Press any key to roll the dice...[/]");
+        AnsiConsole.MarkupLine("[yellow]Press any key to roll the dice... 🎲[/]");
         Console.ReadKey();
         int roll = random.Next(1, 7);
-        lastAction = $"[bold white on blue]{players[currentPlayerIndex].Name} rolled a {roll}![/]";
+        lastAction = $"[bold white on blue]{players[currentPlayerIndex].Name} rolled a {roll}! 🎲[/]";
         return roll;
     }
 
@@ -244,35 +249,35 @@ internal class SnakeLadderGame
         int newPosition = player.Position + roll;
         if (newPosition > 100)
         {
-            lastAction = $"[yellow]{player.Name} stays at {player.Position} (Roll exceeds 100)[/]";
+            lastAction = $"[yellow]{player.Name} stays at {player.Position} (Roll exceeds 100) ❌[/]";
             return;
         }
 
         player.Position = newPosition;
-        lastAction = $"[bold white]{player.Name} moves to {newPosition}[/]";
+        lastAction = $"[bold white]{player.Name} moves to {newPosition} ➡️[/]";
 
         if (snakes.ContainsKey(newPosition))
         {
-            if (player.Skills.Contains("Anchor"))
+            if (player.Skills.Contains("Shield 🛡️"))
             {
-                player.Skills.Remove("Anchor");
-                lastAction = $"[bold green]{player.Name} used Anchor to resist the snake![/]";
+                player.Skills.Remove("Shield 🛡️");
+                lastAction = $"[bold green]{player.Name} used 🛡️ Shield to resist the snake![/]";
             }
-            else if (player.Skills.Contains("Shield"))
+            else if (player.Skills.Contains("Anchor ⚓"))
             {
-                player.Skills.Remove("Shield");
-                lastAction = $"[bold green]{player.Name} blocked snake with Shield![/]";
+                player.Skills.Remove("Anchor ⚓");
+                lastAction = $"[bold green]{player.Name} used ⚓ Anchor to resist the snake![/]";
             }
             else
             {
                 player.Position = snakes[newPosition];
-                lastAction = $"[red]🐍 {player.Name} got bitten! Moves down to {snakes[newPosition]}[/]";
+                lastAction = $"[red]🐍 {player.Name} got bitten! Moves down to {snakes[newPosition]} ⬇️[/]";
             }
         }
         else if (ladders.ContainsKey(newPosition))
         {
             player.Position = ladders[newPosition];
-            lastAction = $"[green]🪜 {player.Name} climbed a ladder! Moves up to {ladders[newPosition]}[/]";
+            lastAction = $"[green]🪜 {player.Name} climbed a ladder! Moves up to {ladders[newPosition]} ⬆️[/]";
         }
     }
 
@@ -283,27 +288,27 @@ internal class SnakeLadderGame
         {
             skillChoices.Add($"{i + 1}. {player.Skills[i]}");
         }
-        skillChoices.Add("Cancel");
+        skillChoices.Add("❌ Cancel");
 
         var skillSelection = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title($"[{player.Color}]{player.Name}'s Skills:[/]")
                 .AddChoices(skillChoices));
 
-        if (skillSelection == "Cancel") return;
+        if (skillSelection == "❌ Cancel") return;
 
         int skillIndex = int.Parse(skillSelection.Split('.')[0]) - 1;
         string skill = player.Skills[skillIndex];
         player.Skills.RemoveAt(skillIndex);
         lastSkillUsed = $"[{player.Color}]{player.Name}[/] used [bold]{skill}[/]";
-        lastAction = $"[bold white on red]{player.Name} used {skill}![/]";
+        lastAction = $"[bold white on red]{player.Name} used {skill}! 💥[/]";
 
-        if (skill == "Stun" || skill == "Swap" || skill == "Sabotage")
+        if (skill == "Stun ⚡" || skill == "Swap 🔄" || skill == "Sabotage 💣")
         {
             var targetPlayers = players.Where(p => p != player && !p.HasWon).ToList();
             if (targetPlayers.Count == 0)
             {
-                lastAction = $"[red]No valid players to target![/]";
+                lastAction = $"[red]No valid players to target! ❌[/]";
                 return;
             }
 
@@ -315,7 +320,7 @@ internal class SnakeLadderGame
             var targetPlayer = targetPlayers.First(p => p.Name == targetSelection);
             ExecuteSkill(skill, player, targetPlayer);
         }
-        else if (skill == "Dice Manipulation")
+        else if (skill == "Dice Manipulation 🎲")
         {
             var rollChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
@@ -323,43 +328,43 @@ internal class SnakeLadderGame
                     .AddChoices(new[] { "1", "2", "3", "4", "5", "6" }));
 
             int chosenRoll = int.Parse(rollChoice);
-            lastAction = $"[bold white on red]{player.Name} chose to roll a {chosenRoll}![/]";
+            lastAction = $"[bold white on red]{player.Name} chose to roll a {chosenRoll}! 🎲[/]";
             MovePlayer(player, chosenRoll);
         }
     }
 
     private static void ExecuteSkill(string skill, Player player, Player targetPlayer)
     {
-        if (skill == "Stun")
+        if (skill == "Stun ⚡")
         {
-            if (!targetPlayer.Skills.Contains("Shield"))
+            if (!targetPlayer.Skills.Contains("Shield 🛡️"))
             {
                 targetPlayer.SkipTurn = true;
-                lastAction += $"\n[red]{targetPlayer.Name} is stunned and will skip next turn![/]";
+                lastAction += $"\n[red]{targetPlayer.Name} is stunned ⚡ and will skip next turn![/]";
             }
             else
             {
-                targetPlayer.Skills.Remove("Shield");
-                lastAction += $"\n[green]{targetPlayer.Name} blocked the stun with Shield![/]";
+                targetPlayer.Skills.Remove("Shield 🛡️");
+                lastAction += $"\n[green]{targetPlayer.Name} blocked the stun with 🛡️ Shield![/]";
             }
         }
-        else if (skill == "Swap")
+        else if (skill == "Swap 🔄")
         {
             (player.Position, targetPlayer.Position) = (targetPlayer.Position, player.Position);
-            lastAction += $"\n[yellow]{player.Name} swapped positions with {targetPlayer.Name}![/]";
+            lastAction += $"\n[yellow]{player.Name} swapped positions 🔄 with {targetPlayer.Name}![/]";
         }
-        else if (skill == "Sabotage")
+        else if (skill == "Sabotage 💣")
         {
-            if (!targetPlayer.Skills.Contains("Shield"))
+            if (!targetPlayer.Skills.Contains("Shield 🛡️"))
             {
                 int sabotageRoll = random.Next(1, 7);
                 targetPlayer.Position = Math.Max(0, targetPlayer.Position - sabotageRoll);
-                lastAction += $"\n[red]{targetPlayer.Name} was sabotaged and moved back {sabotageRoll} spaces![/]";
+                lastAction += $"\n[red]{targetPlayer.Name} was sabotaged 💣 and moved back {sabotageRoll} spaces! ⬇️[/]";
             }
             else
             {
-                targetPlayer.Skills.Remove("Shield");
-                lastAction += $"\n[green]{targetPlayer.Name} blocked the sabotage with Shield![/]";
+                targetPlayer.Skills.Remove("Shield 🛡️");
+                lastAction += $"\n[green]{targetPlayer.Name} blocked the sabotage with 🛡️ Shield![/]";
             }
         }
     }
@@ -370,7 +375,7 @@ internal class SnakeLadderGame
         {
             if (player.Skills.Count >= 2)
             {
-                lastAction = $"[blue]{player.Name} cannot acquire more skills. Maximum skill limit reached![/]";
+                lastAction = $"[blue]{player.Name} cannot acquire more skills. Maximum skill limit reached! ⚠️[/]";
                 return;
             }
 
@@ -381,7 +386,7 @@ internal class SnakeLadderGame
             } while (player.Skills.Contains(newSkill));
 
             player.Skills.Add(newSkill);
-            lastAction = $"[blue]{player.Name} acquired {newSkill}![/]";
+            lastAction = $"[blue]{player.Name} acquired {newSkill}! ✨[/]";
             lastSkillUsed = $"[{player.Color}]{player.Name}[/] got [bold]{newSkill}[/]";
         }
     }
@@ -400,6 +405,8 @@ internal class Program
 {
     private static void Main()
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8; // Enable UTF-8 encoding for emoji support
+
         while (true)
         {
             Console.Clear();
@@ -408,23 +415,23 @@ internal class Program
             var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Main Menu")
-                    .AddChoices(new[] { "Play Game", "How to Play", "Developers", "Exit" }));
+                    .AddChoices(new[] { "🎮 Play Game", "📖 How to Play", "👨‍💻 Developers", "🚪 Exit" }));
 
             switch (choice)
             {
-                case "Play Game":
+                case "🎮 Play Game":
                     SnakeLadderGame.StartGame();
                     break;
 
-                case "How to Play":
+                case "📖 How to Play":
                     ShowInstructions();
                     break;
 
-                case "Developers":
+                case "👨‍💻 Developers":
                     ShowCredits();
                     break;
 
-                case "Exit":
+                case "🚪 Exit":
                     Console.WriteLine("Goodbye! Thanks for playing. 🎉");
                     return;
             }
@@ -434,29 +441,29 @@ internal class Program
     private static void ShowInstructions()
     {
         AnsiConsole.Write(new Panel(new Rows(
-            new Text("HOW TO PLAY:"),
-            new Text("- Roll dice to move forward"),
-            new Text("- First player to reach 100 wins"),
+            new Text("📜 HOW TO PLAY:"),
+            new Text("- 🎲 Roll dice to move forward"),
+            new Text("- 🏁 First player to reach 100 wins"),
             new Text(""),
-            new Text("SPECIAL TILES:"),
-            new Text("- [green]Ladders (L)[/]: Move up to higher number"),
-            new Text("- [red]Snakes (S)[/]: Move down to lower number"),
-            new Text("- [blue]Skill Tiles (*)[/]: Gain special abilities"),
+            new Text("🌈 SPECIAL TILES:"),
+            new Text("- [green]🪜 Ladders[/]: Move up to higher number"),
+            new Text("- [red]🐍 Snakes[/]: Move down to lower number"),
+            new Text("- [blue]✨ Skill Tiles[/]: Gain special abilities"),
             new Text(""),
-            new Text("SKILLS (Max 2 per player):"),
-            new Text("- [blue]Shield[/]: Block snakes and some skills"),
-            new Text("- [blue]Stun[/]: Make opponent skip next turn"),
-            new Text("- [blue]Swap[/]: Exchange positions with another player"),
-            new Text("- [blue]Dice Manipulation[/]: Choose your next roll"),
-            new Text("- [blue]Anchor[/]: Resist snake bites"),
-            new Text("- [blue]Sabotage[/]: Push another player back"),
+            new Text("🛠️ SKILLS (Max 2 per player):"),
+            new Text("- [blue]🛡️ Shield[/]: Block snakes and some skills"),
+            new Text("- [blue]⚡ Stun[/]: Make opponent skip next turn"),
+            new Text("- [blue]🔄 Swap[/]: Exchange positions with another player"),
+            new Text("- [blue]🎲 Dice Manipulation[/]: Choose your next roll"),
+            new Text("- [blue]⚓ Anchor[/]: Resist snake bites"),
+            new Text("- [blue]💣 Sabotage[/]: Push another player back"),
             new Text(""),
-            new Text("PLAYER STATUS:"),
+            new Text("👥 PLAYER STATUS:"),
             new Text("- Shows current position of all players"),
             new Text("- Displays active skills for each player"),
             new Text("- Indicates who is stunned or has won"),
             new Text("- Updates in real-time during gameplay")
-        )).Header("Instructions").BorderColor(Color.Yellow));
+        )).Header("📚 Instructions").BorderColor(Color.Yellow));
 
         Console.WriteLine("\nPress any key to return to the Main Menu...");
         Console.ReadKey(true);
@@ -465,13 +472,13 @@ internal class Program
     private static void ShowCredits()
     {
         AnsiConsole.Write(new Panel(new Rows(
-            new Text("DEVELOPERS:"),
+            new Text("👨‍💻 DEVELOPERS:"),
             new Text(""),
-            new Text("Game Design: Allen Paul Belarmino"),
-            new Text("Programming: Allen Paul Belarmino"),
+            new Text("🎨 Game Design: Allen Paul Belarmino"),
+            new Text("💻 Programming: Allen Paul Belarmino"),
             new Text(""),
             new Text("© 2023")
-        )).Header("Credits").BorderColor(Color.Green));
+        )).Header("🏆 Credits").BorderColor(Color.Green));
 
         Console.WriteLine("\nPress any key to return to the Main Menu...");
         Console.ReadKey(true);
