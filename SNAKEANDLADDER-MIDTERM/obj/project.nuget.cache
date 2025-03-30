@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aGIASKv8OdE=",
+  "dgSpecHash": "uXbszPkF6Qk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\john paul\\source\\repos\\SNAKEANDLADDER-MIDTERM\\SNAKEANDLADDER-MIDTERM\\SNAKEANDLADDER-MIDTERM.csproj",
+  "projectFilePath": "C:\\Duwa\\consoleSpectre-SNAKEANDLADDER\\SNAKEANDLADDER-MIDTERM\\SNAKEANDLADDER-MIDTERM.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\john paul\\.nuget\\packages\\spectre.console\\0.49.1\\spectre.console.0.49.1.nupkg.sha512"
+    "C:\\Users\\Vince\\.nuget\\packages\\spectre.console\\0.49.1\\spectre.console.0.49.1.nupkg.sha512"
   ],
   "logs": []
 }
