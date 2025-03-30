@@ -15,3 +15,21 @@ C:\Users\john paul\source\repos\SNAKEANDLADDER-MIDTERM\SNAKEANDLADDER-MIDTERM\ob
 C:\Users\john paul\source\repos\SNAKEANDLADDER-MIDTERM\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.pdb
 C:\Users\john paul\source\repos\SNAKEANDLADDER-MIDTERM\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.genruntimeconfig.cache
 C:\Users\john paul\source\repos\SNAKEANDLADDER-MIDTERM\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\ref\SNAKEANDLADDER-MIDTERM.dll
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\SNAKEANDLADDER-MIDTERM.exe
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\SNAKEANDLADDER-MIDTERM.deps.json
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\SNAKEANDLADDER-MIDTERM.runtimeconfig.json
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\SNAKEANDLADDER-MIDTERM.dll
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\SNAKEANDLADDER-MIDTERM.pdb
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\bin\Debug\net8.0\Spectre.Console.dll
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.csproj.AssemblyReference.cache
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.AssemblyInfoInputs.cache
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.AssemblyInfo.cs
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.csproj.CoreCompileInputs.cache
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.sourcelink.json
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEAND.0B150029.Up2Date
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.dll
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\refint\SNAKEANDLADDER-MIDTERM.dll
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.pdb
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\SNAKEANDLADDER-MIDTERM.genruntimeconfig.cache
+C:\Users\Allen\Desktop\SnakeNLadder\consoleSpectre-SNAKEANDLADDER\SNAKEANDLADDER-MIDTERM\obj\Debug\net8.0\ref\SNAKEANDLADDER-MIDTERM.dll
